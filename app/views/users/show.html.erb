@@ -1,0 +1,11 @@
+<%= @user.name %>さんの詳細ページ
+
+
+
+<%= @user.name %>
+<%= @user.detail%>
+<img src=<%= @user.image %> class = "icon_image">
+
+<% if @user.id == current_user.id %>
+  <%= link_to "編集する", edit_user_path(current_user.id)  %>
+<% end %>
