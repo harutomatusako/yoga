@@ -1,2 +1,23 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<%= form_with model:@event,url: event_path(@event.id), local:true do |f| %>
+ イベント名
+<%= f.text_field :title %>
+開始日時
+<%= f.text_field :date_from %>
+終了日時
+<%= f.text_field :date_to %>
+場所
+県
+<%= f.select :location, Event.locations.keys, {} %>
+市町村
+<%= f.text_field :city %>
+公園名
+<%= f.text_field :park %>
+内容
+<%= f.text_area :detail %>
+イメージ写真
+<%= f.attachment_field :image %>
+
+
+<%= f.submit '編集する' %>
+
+<% end %>

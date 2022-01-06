@@ -1,2 +1,13 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+イベント一覧
+<% @events.each do |event| %>
+ タイトル
+ <%= event.title %>
+ 場所
+ <%= event.location %>
+ <%= event.city %>
+ <%= event.park %>
+ 日時
+ <%= event.date_from %>~
+ <%= event.date_to %>
+      
+<% end %>
