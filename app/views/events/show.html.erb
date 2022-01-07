@@ -16,4 +16,7 @@
  <%= link_to "削除", event_path(@event), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
 
-<%= link_to "参加する", event_joins_create_path %>
+<%= form_with model: @event_join,url: event_joins_path, local:true do |f| %>
+<%= f.submit "参加する" %>
+<%= f.hidden_field :event_id, value:@event.id %>
+<% end %>

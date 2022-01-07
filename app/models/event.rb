@@ -13,5 +13,6 @@ class Event < ApplicationRecord
      沖縄県:47
    }
    belongs_to :user
+   has_many :event_joins
 
 end

@@ -27,6 +27,7 @@ class EventsController < ApplicationController
   def show
     @user = current_user
     @event=Event.find(params[:id])
+    @event_join=EventJoin.new
   end
 
   def edit
@@ -40,7 +41,7 @@ class EventsController < ApplicationController
   end
 
 
-def event_params
+ def event_params
     params.require(:event).permit(:user_id, :title, :detail, :image, :date_from, :date_to, :location, :city, :park)
-end
+ end
 end

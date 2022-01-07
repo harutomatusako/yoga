@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   mount_uploader :image, ImageUploader
   has_many :events
+  has_many :event_joins
 end
