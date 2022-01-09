@@ -9,3 +9,15 @@
 <% if @user.id == current_user.id %>
   <%= link_to "編集する", edit_user_path(current_user.id)  %>
 <% end %>
+
+イベント参加履歴
+<% @event_joins = EventJoin.where(user_id: current_user.id).where.not(status: 'キャンセル') %>
+<% @event_joins.each do | join | %>
+  <%= join.event.title %><br>
+<% end %>
+
+<% @events.each do | event | %>
+ 
+ <%= link_to event.title, user_join_user_path(:event_id => event.id) %>
+<% end %>
+

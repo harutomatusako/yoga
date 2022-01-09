@@ -25,19 +25,20 @@ class EventsController < ApplicationController
   end
 
   def show
-    @user = current_user
     @event=Event.find(params[:id])
-    @event_join=EventJoin.new
+    @user = @event.user
+    @event_join = EventJoin.find_by(user: current_user, event: @event) || EventJoin.new
+    @events = Event.all
   end
 
   def edit
     @event=Event.find(params[:id])
   end
-  
-  def destroy 
-    @event = Event.find(params[:id])  
-    @event.destroy  
-    redirect_to events_path  
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_path
   end
 
 

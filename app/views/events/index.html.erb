@@ -7,7 +7,8 @@
  <%= event.city %>
  <%= event.park %>
  日時
- <%= event.date_from %>~
- <%= event.date_to %>
-      
+ <!-- %y nen %m getu %d niti %H jikann %M hun %S byou -->
+ <%= event.date_from.strftime('%y年 %m月 %d日 %H時 %M分')%>~
+ <%= event.date_to.strftime('%y年 %m月 %d日 %H時 %M分') %>
+
 <% end %>

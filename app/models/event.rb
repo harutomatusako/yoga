@@ -14,5 +14,7 @@ class Event < ApplicationRecord
    }
    belongs_to :user
    has_many :event_joins
-
+  def joined(user)
+    EventJoin.where(event_id: self.id, user_id: user.id).exists?
+  end
 end

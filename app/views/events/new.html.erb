@@ -4,9 +4,9 @@
 イベント名
 <%= f.text_field :title %>
 開始日時
-<%= f.text_field :date_from %>
+<%= f.datetime_select :date_from, {use_month_numbers:true,minute_step:5}, class: 'form-control' %>
 終了日時
-<%= f.text_field :date_to %>
+<%= f.datetime_select :date_to , {use_month_numbers:true}, class: 'form-control' %>
 場所
 県
 <%= f.select :location, Event.locations.keys, {} %>

@@ -7,7 +7,13 @@ class EventJoinsController < ApplicationController
     　#render :new_event
     end
   end
-  
+
+  def update
+    @event_join = EventJoin.find(params[:id])
+    @event_join.update(status: "キャンセル")
+    redirect_to user_path(current_user.id)
+  end
+
 private
 def event_joins_params
     params.require(:event_join).permit(:event_id).merge(user_id:current_user.id)

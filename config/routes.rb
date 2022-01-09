@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get 'homes/about'
   devise_for :users
   get "users/my_page"=>"users#index"
-  resources :users, only: [:edit, :show, :update]
+  resources :users, only: [:edit, :show, :update] do
+    member do
+      get :user_join
+    end
+  end
   resources :events
   resources :event_joins, only: [:create, :update]
 end

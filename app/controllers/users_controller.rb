@@ -14,6 +14,13 @@ class UsersController < ApplicationController
 
   def show
     @user=User.find(params[:id])
+    @events=Event.where(user_id: @user.id)
+    
+  end
+  
+  def user_join
+    joined_users=EventJoin.where(event_id: params[:event_id]).pluck(:user_id)
+    @users=User.find(joined_users)
   end
 
 

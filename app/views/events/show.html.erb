@@ -6,8 +6,8 @@
 <%= @event.city %>
 <%= @event.park %>
 日時
-<%= @event.date_from %>~
-<%= @event.date_to %>
+<%= @event.date_from.strftime('%y年 %m月 %d日 %H時 %M分') %>~
+<%= @event.date_to.strftime('%y年 %m月 %d日 %H %M分') %>
 内容
 <%= @event.detail %>
 
@@ -16,7 +16,13 @@
  <%= link_to "削除", event_path(@event), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
 
-<%= form_with model: @event_join,url: event_joins_path, local:true do |f| %>
-<%= f.submit "参加する" %>
-<%= f.hidden_field :event_id, value:@event.id %>
+<% if @event.joined(current_user) == false && @user.id != current_user.id %>
+ <%= form_with model: @event_join,url: event_joins_path, local:true do |f| %>
+  <%= f.submit "参加する" %>
+  <%= f.hidden_field :event_id, value:@event.id %>
+ <% end %>
+<% end %>
+
+<% if @event.joined(current_user) == true %>
+ <%= link_to "参加キャンセル", event_join_path(@event_join), method: :patch, "data-confirm" => "本当に参加キャンセルしますか？" %>
 <% end %>
