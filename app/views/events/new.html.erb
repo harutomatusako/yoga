@@ -1,24 +1,49 @@
-イベント登録
+<div class="container">
+  <div class="card user_form">
+    <div class="card-body user">
+      <div class="card-header text-danger form_title">イベント登録</div>
 
-<%= form_with model: @event, url: events_path, local:true do |f| %>
-イベント名
-<%= f.text_field :title %>
-開始日時
-<%= f.datetime_select :date_from, {use_month_numbers:true,minute_step:5}, class: 'form-control' %>
-終了日時
-<%= f.datetime_select :date_to , {use_month_numbers:true}, class: 'form-control' %>
-場所
-県
-<%= f.select :location, Event.locations.keys, {} %>
-市町村
-<%= f.text_field :city %>
-公園名
-<%= f.text_field :park %>
-内容
-<%= f.text_area :detail %>
-イメージ写真
-<%= f.attachment_field :image %>
+      <%= form_with model: @event, url: events_path, local:true do |f| %>
+      <table>
+         <tr class="form-group">
+          <td><label class="control-label">イベント名</label></td>
+        　<td><%= f.text_field :title, class: "form-control" %></td>
+         </tr>
+        <tr class="form-group">
+          <td><label class="control-label">開始日時</label></td>
+          <td><%= f.datetime_select :date_from, {use_month_numbers:true,minute_step:5}, class: 'form-control date' %></td>
+        </tr>
+        <tr class="form-group">
+          <td><label class="control-label">終了日時</label></td>
+          <td><%= f.datetime_select :date_to , {use_month_numbers:true}, class: 'form-control date' %></td>
+        </tr>
+        <tr class="form-group">
+          <td><label class="control-label">県</label></td>
+          <td><%= f.select :location, Event.locations.keys, {} %></td>
+        </tr>
+        <tr class="form-group">
+          <td><label class="control-label">市町村</label></td>
+          <td><%= f.text_field :city %></td>
+        </tr>
+        <tr class="form-group">
+          <td><label class="control-label">公園名</label></td>
+          <td><%= f.text_field :park %></td>
+        </tr>
+        <tr class="form-group">
+          <td><label class="control-label">内容</label></td>
+          <td><%= f.text_area :detail %></td>
+        </tr>
+        <tr class="form-group">
+          <td><label class="control-label">イメージ写真</label></td>
+         <td> <%= f.attachment_field :image %></td>
+        </tr>
+       </table>
+       <%= f.submit '新規登録', class: "btn btn-primary"%>
+      <% end %>
 
-<%= f.submit '新規登録' %>
 
-<% end %>
+    </div>
+  </div>
+</div>
+
+

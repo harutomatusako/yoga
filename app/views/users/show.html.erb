@@ -1,7 +1,5 @@
 <%= @user.name %>さんの詳細ページ
 
-
-
 <%= @user.name %>
 <%= @user.detail%>
 <img src=<%= @user.image %> class = "icon_image">
@@ -17,7 +15,20 @@
 <% end %>
 
 <% @events.each do | event | %>
- 
+
  <%= link_to event.title, user_join_user_path(:event_id => event.id) %>
+<% end %>
+
+<% unless @user.id == current_user.id %>
+   <% if @haveRoom == true %>
+     <%= link_to "ダイレクトメッセージ", room_path(@roomId) %>
+   <% else %>
+     <%= form_with model: @room, local: true do |f|%>
+       <%= fields_for @RoomUser do |r| %>
+         <%= r.hidden_field :user_id, value: @user.id %>
+       <% end %>
+       <%= f.submit "チャットを始める" %>
+     <% end %>
+   <% end %>
 <% end %>
 

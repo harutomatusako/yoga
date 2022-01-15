@@ -1,20 +1,44 @@
-イベント詳細
-イベント名
-<%= @event.title %>
-場所
-<%= @event.location %>
-<%= @event.city %>
-<%= @event.park %>
-日時
-<%= @event.date_from.strftime('%y年 %m月 %d日 %H時 %M分') %>~
-<%= @event.date_to.strftime('%y年 %m月 %d日 %H %M分') %>
-内容
-<%= @event.detail %>
+<div class="container">
+<div class="text-left">
+<div class="d-flex flex-column" style="width:500px;margin: 0 auto;">
+ <div class="mb-5">
 
-<% if @user.id === current_user.id %>
- <%= link_to "編集", edit_event_path(@event) %>
- <%= link_to "削除", event_path(@event), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
+ <h1 class="text-center mt-5"><%= @event.title %></h1>
+ </div>
+ <dl>
+   <dt class="text-center">場所</dt>
+   <dd class="text-center">
+    <%= @event.location %>
+    <%= @event.city %>
+    <%= @event.park %>
+   </dd>
+ </dl>
+ <dl>
+   <dt class="text-center">日時</dt>
+   <dd class="text-center">
+   <%= @event.date_from.strftime('%y年 %m月 %d日 %H時 %M分') %>
+   ~
+   <%= @event.date_to.strftime('%y年 %m月 %d日 %H %M分') %>
+   </dd>
+ </dl>
+ <dl>
+   <dt class="text-center">内容</dt>
+   <dd class="text-center"><%= @event.detail %></dd>
+ </dl>
+ <div class="text-center">
+ <%= attachment_image_tag @event, :image, format: 'png', size: "500x400" %><br>
+ </div>
+ <div class="mt-5 text-center">
+   <% if @user.id === current_user.id %>
+    <%= link_to "編集", edit_event_path(@event), class: "btn btn-primary mr-2" %>
+    <%= link_to "削除", event_path(@event), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+   <% end %>
+ </div>
+</div>
+</div>
+</div><!-- container end -->
+
+
 
 <% if @event.joined(current_user) == false && @user.id != current_user.id %>
  <%= form_with model: @event_join,url: event_joins_path, local:true do |f| %>

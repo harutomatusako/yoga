@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+.user{
+ text-align: center;
+}
+
+.form_title{
+ font-size: 25px;
+}
+
+.user_form{
+ margin-top: 100px;
+}
+
+.date{
+ display: initial;
+ width: initial;
+}
+
+table{
+ border-collapse: separate;
+ border-spacing: 50px 5px;
+}
+

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
   get 'homes/top'
   get 'homes/about'
   devise_for :users
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get :user_join
     end
   end
+  resources :rooms
+  resources :messages
   resources :events
   resources :event_joins, only: [:create, :update]
 end

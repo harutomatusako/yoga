@@ -1,2 +1,10 @@
-マイページ
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<div style="position: relative;text-align: center;">
+  <%= image_tag("katee-lue-eLYDW_WuE5o-unsplash.jpg",style: "width:50%; margin-top:9%; ") %>
+  <div class="p-3 mb-2  text-black"><p style="position: absolute; left: 30%; top: 0%; font-weight: bold; font-size: 4em; font-family :Quicksand, sans-serif;">Yoga in the park</p>
+  </div>
+  <% if user_signed_in? %>
+  <% else %>
+  <%= link_to "ユーザー登録",new_user_registration_path, class: "btn btn-secondary" %>
+  <% end %>
+</div>
+
