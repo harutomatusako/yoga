@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-
+  
+  
+  get 'notifications/index'
   get 'homes/top'
   get 'homes/about'
   devise_for :users
@@ -11,7 +13,12 @@ Rails.application.routes.draw do
   end
   resources :rooms
   resources :messages
-  resources :events
+  resources :events do
+  collection do
+    get 'search'
+   end
+  end
+
   resources :event_joins, only: [:create, :update]
 end
 

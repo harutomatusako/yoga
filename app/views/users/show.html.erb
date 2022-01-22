@@ -1,34 +1,106 @@
-<%= @user.name %>さんの詳細ページ
+<div class="container ">
+ <div class="row mt-5 font-weight-bold h4">
+  <div class="col mb-5">
+    <%= @user.name %>さんの詳細ページ
+  </div>
+ </div>
+ <div class="row text-center mt-4">
+  <div class="col-6 text-right">
+    <img src=<%= @user.image %> class = "icon_image">
+  </div>
+  <div class="col my_page">
+   <div class="row h2">
+    <%= @user.name %>
+   </div>
+   <div class="row">
+    <%= @user.detail%>
+   </div>
+   
+   <div class="row mt-5">
+    <% @notifications.each do |notification| %>
+    <dl class="text-left">
+    <%= link_to user_path(notification.visitor) do %>
+     <%= notification.visitor.name %>さんが
+    <% end %>
+    <% if notification.action=='dm' %>
+        あなたにDMを送りました<br>
+     <% end %>
+    <% end %>
+    </dl>
 
-<%= @user.name %>
-<%= @user.detail%>
-<img src=<%= @user.image %> class = "icon_image">
+   </div>
+   <div class="row mt-5">
+     <% unless @user.id == current_user.id %>
+       <% if @haveRoom == true %>
+         <%= link_to "ダイレクトメッセージ", room_path(@roomId) %>
+       <% else %>
+         <%= form_with model: @room, local: true do |f|%>
+           <%= fields_for @RoomUser do |r| %>
+             <%= r.hidden_field :user_id, value: @user.id %>
+           <% end %>
+           <%= f.submit "チャットを始める" %>
+         <% end %>
+       <% end %>
+    <% end %>
+   </div>
+   <div class="row">
+    <% if @user.id == current_user.id %>
+      <%= link_to "編集する", edit_user_path(current_user.id)  %>
+    <% end %>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="border mt-5"></div>
+
+
+<div class="mt-3 h5">開催しているイベント</div>
+   <div class="itemContrainer d-flex flex-row bd-highlight mt-5">
+    <% @events.each do | event | %>
+    <div class="item mx-5">
+     <%= link_to event_path(event.id) do %>
+      <div><%= attachment_image_tag event, :image, format: 'png', size: "200x200" %></div>
+     <% end %>
+     <div><%= link_to event.title, user_join_user_path(:event_id => event.id) %></div>
+     <div>
+      <%= event.date_from.strftime('%y年 %m月 %d日 %H時 %M分')%>
+     </div>
+     <div><%= event.location %> <%= event.city %> <%= event.park %></div>
+    </div>
+    <% end %>
+  </div>
+
+   <div class="border mt-5"></div>
+
 
 <% if @user.id == current_user.id %>
-  <%= link_to "編集する", edit_user_path(current_user.id)  %>
-<% end %>
-
-イベント参加履歴
-<% @event_joins = EventJoin.where(user_id: current_user.id).where.not(status: 'キャンセル') %>
-<% @event_joins.each do | join | %>
-  <%= join.event.title %><br>
-<% end %>
-
-<% @events.each do | event | %>
-
- <%= link_to event.title, user_join_user_path(:event_id => event.id) %>
-<% end %>
-
-<% unless @user.id == current_user.id %>
-   <% if @haveRoom == true %>
-     <%= link_to "ダイレクトメッセージ", room_path(@roomId) %>
-   <% else %>
-     <%= form_with model: @room, local: true do |f|%>
-       <%= fields_for @RoomUser do |r| %>
-         <%= r.hidden_field :user_id, value: @user.id %>
+  <div class="row">
+   <div class="col-md-6">
+    <div class="mt-3 h5">イベント参加履歴</div>
+       <div class="itemContrainer d-flex flex-row bd-highlight mt-5">
+       <% @event_joins.each do | join | %>
+        <% if join.event.date_from < Date.today %>
+         <div class="item mx-5">
+          <div><%= link_to join.event.title, event_path(join.event.id) %></div>
+         </div>
+        <% end %>
        <% end %>
-       <%= f.submit "チャットを始める" %>
+      </div>
+    </div>
+   <div class="col-md-6">
+    <div class="mt-3 h5">イベント参加Yotei</div>
+    <div class="itemContrainer d-flex flex-row bd-highlight mt-5">
+     <% @event_joins.each do | join | %>
+      <% if join.event.date_from > Date.today %>
+       <div class="item mx-5">
+        <div><%= link_to join.event.title, event_path(join.event.id) %></div>
+       </div>
+      <% end %>
      <% end %>
-   <% end %>
-<% end %>
+    </div>
+   </div>
+  </div>
+ <% end %>
+
 

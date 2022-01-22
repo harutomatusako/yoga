@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_043031) do
+ActiveRecord::Schema.define(version: 2022_01_22_042939) do
 
   create_table "event_joins", force: :cascade do |t|
     t.integer "user_id"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 2022_01_11_043031) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "text"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id"
+    t.integer "visited_id"
+    t.integer "room_id"
+    t.integer "message_id"
+    t.string "action"
+    t.boolean "checked"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "room_users", force: :cascade do |t|

@@ -25,9 +25,24 @@
    <dt class="text-center">内容</dt>
    <dd class="text-center"><%= @event.detail %></dd>
  </dl>
+ <dl>
+   <dt class="text-center">開催者</dt>
+   <dd class="text-center"><%= link_to @event.user.name,user_path(@user.id) %></dd>
+ </dl>
+ 
  <div class="text-center">
  <%= attachment_image_tag @event, :image, format: 'png', size: "500x400" %><br>
+ </div> 
+ 
+ <div class="text-center mt-5">
+  <% if @event.joined(current_user) == false && @user.id != current_user.id %>
+    <%= link_to "参加する", "/event_joins/?event_id=#{@event.id}", method: :post, class: "btn btn-primary" %>
+  <% end %>
+  <% if @event.joined(current_user) %>
+   <%= link_to "参加キャンセル", event_join_path(@event.id), method: :patch, "data-confirm" => "本当に参加キャンセルしますか？" %>
+  <% end %>
  </div>
+ 
  <div class="mt-5 text-center">
    <% if @user.id === current_user.id %>
     <%= link_to "編集", edit_event_path(@event), class: "btn btn-primary mr-2" %>
@@ -39,14 +54,3 @@
 </div><!-- container end -->
 
 
-
-<% if @event.joined(current_user) == false && @user.id != current_user.id %>
- <%= form_with model: @event_join,url: event_joins_path, local:true do |f| %>
-  <%= f.submit "参加する" %>
-  <%= f.hidden_field :event_id, value:@event.id %>
- <% end %>
-<% end %>
-
-<% if @event.joined(current_user) == true %>
- <%= link_to "参加キャンセル", event_join_path(@event_join), method: :patch, "data-confirm" => "本当に参加キャンセルしますか？" %>
-<% end %>

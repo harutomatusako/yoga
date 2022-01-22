@@ -10,6 +10,10 @@ class RoomsController < ApplicationController
 
  def show
    @room = Room.find(params[:id])
+   notifications = current_user.passive_notifications.where(room_id: @room.id, checked: nil)
+   notifications.each do |notification|
+      notification.update(checked: true)
+   end
    if RoomUser.where(user_id: current_user.id, room_id: @room.id).present?
      @messages = @room.messages
      @message = Message.new

@@ -39,3 +39,20 @@ table{
  border-spacing: 50px 5px;
 }
 
+.my_page{
+margin: 10px 50px 20px;
+}
+
+.form{
+    margin: 0 auto;
+    width: 80%
+}
+
+
+
+.border{
+  height: 1px;
+  background-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#ccc), to(transparent));
+  background-image: linear-gradient(to right, transparent, #ccc, transparent);
+}
+

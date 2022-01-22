@@ -1,0 +1,17 @@
+
+<div class="itemContrainer d-flex flex-row bd-highlight mt-5">
+ <% @events.each do |event| %>
+  <div class="item mx-5">
+   <div>
+    <%= link_to event_path(event.id) do %>
+     <%= attachment_image_tag event, :image, format: 'png', size: "300x300" %>
+    <% end %>
+    </div>
+   <div><%= event.title %></div>
+   <div>
+    <%= event.date_from.strftime('%y年 %m月 %d日 %H時 %M分')%>
+   </div>
+   <div><%= event.location %> <%= event.city %> <%= event.park %></div>
+  </div>
+ <% end %>
+</div>

@@ -12,7 +12,7 @@
     <% if user_signed_in? %>
      <%= link_to 'TOP', homes_top_path, class: "py-2 d-none d-md-inline-block" %>
      <%= link_to 'ABOUT', homes_about_path, class: "py-2 d-none d-md-inline-block" %>
-     <%= link_to '募集する', new_event_path, class: "py-2 d-none d-md-inline-block" %>
+     <%= link_to '開催する', new_event_path, class: "py-2 d-none d-md-inline-block" %>
      <%= link_to 'ヨガイベント一覧', events_path, class: "py-2 d-none d-md-inline-block" %>
      <%= link_to 'マイページ', user_path(current_user), class: "py-2 d-none d-md-inline-block" %>
      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "py-2 d-none d-md-inline-block" %>
@@ -22,9 +22,7 @@
      <%= link_to "新規登録", new_user_registration_path, class: "py-2 d-none d-md-inline-block" %>
      <%= link_to "ログイン", new_user_session_path, class: "py-2 d-none d-md-inline-block" %>
     <% end %>
- 
   </nav>
-  
 </header>
  
   <body>

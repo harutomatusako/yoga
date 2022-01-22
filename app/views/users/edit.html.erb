@@ -1,15 +1,36 @@
-<%= @user.name %>さんの編集ページ
 
-<%= form_with model:@user,url: user_path(@user.id), local:true do |f| %>
- <%= f.label "氏名" %>
- <%= f.text_field :name, autofocus: true %>
- 
- <%= f.label "自己紹介" %>
- <%= f.text_field :detail, autofocus: true %>
- 
- <%= f.label "イメージ写真" %>
- <img src=<%= @user.image %> class = "icon_image">
- <%= f.file_field :image %>
- 
- <%= f.submit '変更を保存' %>
-<% end %>
+<div class="container ">
+ <div class="row mt-5 font-weight-bold h4">
+  <div class="col mb-5">
+   編集ページ
+    <%= form_with model:@user,url: user_path(@user.id), local:true do |f| %>
+  </div>
+ </div>
+
+ <div class="row mt-4">
+  <div class="col-3 text-right">
+   <div class="row">
+   <img src=<%= @user.image %> class = "icon_image">
+   </div>
+   <div class="row mt-5">
+    <%= f.file_field :image %>
+   </div>
+  </div>
+  <div class="col my_page">
+   <div class="row">
+    <%= f.label "氏名" %>
+    <%= f.text_field :name, autofocus: true %>
+   </div>
+   <div class="row mt-5">
+    <%= f.label "自己紹介" %>
+    <%= f.text_area :detail, autofocus: true,size: "30x5" %>
+   </div>
+  </div>
+ </div>
+
+ <div class="col-7 text-right mt-5">
+  <%= f.submit '変更を保存' %>
+ </div>
+  <% end %>
+</div>
+

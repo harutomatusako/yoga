@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def index
-    @events=Event.all
+    @events=Event.where('date_from >= ?', Date.today)
   end
 
   def new
@@ -39,6 +39,23 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     redirect_to events_path
+  end
+
+  def search
+    content = params[:content]
+    @event = Event.locations.find {|key, value| key.match(/#{content}/)}
+    if @event.blank?
+     @events = Event.all
+    else
+     location_enum = @event[1]
+    @events = Event.where(location: location_enum)
+    end
+    render :index
+  end
+
+  private
+  def search_for(content)
+    Event.where(name: content)
   end
 
 

@@ -1,10 +1,10 @@
 <div class="container">
   <div class="card user_form">
     <div class="card-body user">
-      <div class="card-header text-danger form_title">イベント登録</div>
+      <div class="card-header font-weight-bold text-primary  form_title">イベント登録</div>
 
       <%= form_with model: @event, url: events_path, local:true do |f| %>
-      <table>
+      <table class="form font-weight-bold">
          <tr class="form-group">
           <td><label class="control-label">イベント名</label></td>
         　<td><%= f.text_field :title, class: "form-control" %></td>
@@ -31,14 +31,16 @@
         </tr>
         <tr class="form-group">
           <td><label class="control-label">内容</label></td>
-          <td><%= f.text_area :detail %></td>
+          <td><%= f.text_area :detail,size: "30x8" %></td>
         </tr>
         <tr class="form-group">
           <td><label class="control-label">イメージ写真</label></td>
          <td> <%= f.attachment_field :image %></td>
         </tr>
        </table>
-       <%= f.submit '新規登録', class: "btn btn-primary"%>
+       <div class="mt-5">
+       <%= f.submit '新規登録', class: "btn btn-primary "%>
+       </div>
       <% end %>
 
 

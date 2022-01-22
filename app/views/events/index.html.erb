@@ -1,3 +1,14 @@
+<div class="conteiner">
+ <div class="date row mt-5 text-center">
+  <% if user_signed_in? %>
+   <%= form_with url: search_events_path, method: :get do |form| %>
+    <%= text_field_tag 'content' %>
+    <%= submit_tag '検索' %>
+   <% end %>
+  <% end %>
+ </div>
+</div>
+
 
 <div class="itemContrainer d-flex flex-row bd-highlight mt-5">
  <% @events.each do |event| %>
@@ -15,3 +26,5 @@
   </div>
  <% end %>
 </div>
+
+

@@ -34,12 +34,16 @@ class UsersController < ApplicationController
         #//新しいインスタンスを生成
       end
     end
-     @events=Event.where(user_id: @user.id)
+     @events=Event.where(user_id: @user.id).where('date_from >= ?', Date.today)
+     @event_joins = EventJoin.where(user_id: current_user.id, status: nil)
+     @notifications = @user.passive_notifications.where(checked: nil).where.not(visitor_id: @user.id)
+
+     # @event_joins_future = EventJoin.where(user_id: current_user.id, status: nil)
   end
 
 
   def user_join
-    joined_users=EventJoin.where(event_id: params[:event_id]).pluck(:user_id)
+    joined_users= EventJoin.where(event_id: params[:event_id]).where.not(status: "キャンセル").or(EventJoin.where(event_id: params[:event_id]).where(status: nil)).pluck(:user_id)
     @users=User.find(joined_users)
   end
 
