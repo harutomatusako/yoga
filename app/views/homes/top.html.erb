@@ -1,15 +1,22 @@
 
 
-
-
-<div style="position: relative;text-align: center;">
-
-  <%= image_tag("katee-lue-eLYDW_WuE5o-unsplash.jpg",style: "width:50%; margin-top:9%; ") %>
-  <div class="p-3 mb-2 mt-5  text-black"><p style="position: absolute; left: 30%; top: 0%; font-weight: bold; font-size: 4em; font-family :Quicksand, sans-serif;">Yoga in the park</p>
+<div class="display-3 font-weight-bold text-center mt-5">Yoga in the park</div>
+<div class="container">
+ <div class="row mt-5 justify-content-center">
+  <div id="box">
+   <div id="images">
+    <div class="image1"></div>
+    <div class="image2"></div>
+    <div class="image3"></div>
+    <div class="image4"></div>
+   </div>
   </div>
-  <% if user_signed_in? %>
+ </div>
+</div>
+
+<div class="text-center mt-5">
+ <% if user_signed_in? %>
   <% else %>
   <%= link_to "ユーザー登録",new_user_registration_path, class: "btn btn-secondary" %>
   <% end %>
 </div>
-

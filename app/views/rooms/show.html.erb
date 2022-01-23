@@ -1,8 +1,8 @@
 <div class="chat-room">
- <h1>メッセージ</h1>
+ <h1 class="text-center mt-5">メッセージ</h1>
 
  <% @RoomUsers.each do |r| %>
- <div class="user-name">
+ <div class="user-name text-center">
  <strong>
      <a class="rooms-user-link" href="/users/<%= r.user.id %>">
        <%= r.user.name %>さん
@@ -10,11 +10,8 @@
  </strong>
  </div>
  <% end %>
-
-
  <hr>
- <div class="chats">
-
+ <div class="chats text-center">
    <div class="chat">
      <% if @messages.present? %>
        <% @messages.each do |m| %>
@@ -29,7 +26,6 @@
          <p>メッセージはまだありません</p>
      <% end %>
    </div>
-
    <div class="posts">
      <%= form_with model: @message, local: true do |f| %>
        <%= f.text_field :text, placeholder: "メッセージを入力してください" %>
@@ -37,6 +33,5 @@
        <%= f.submit "送信する" %>
      <% end %>
    </div>
-
  </div>
 </div>
