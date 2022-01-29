@@ -6,7 +6,7 @@
  </div>
  <div class="row text-center mt-4">
   <div class="col-6 text-right">
-    <img src=<%= @user.image %> class = "icon_image">
+    <%= attachment_image_tag @user, :image, format: 'png', size: "500x400", class: "icon_image"%><br>
   </div>
   <div class="col my_page">
    <div class="row h2">
