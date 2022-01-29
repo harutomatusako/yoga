@@ -62,16 +62,16 @@ margin: 10px 50px 20px;
   height: 500px;
 }
 .image1 {
-  background-image: url(anant-sharma-ApX7UaSSf3A-unsplash.1.jpg);
+  background-image: image-url("anant-sharma-ApX7UaSSf3A-unsplash.1.jpg");
 }
 .image2 {
-  background-image: url(ignacio-brosa-vJDbPuxUS_s-unsplash.jpg);
+  background-image: image-url("ignacio-brosa-vJDbPuxUS_s-unsplash.jpg");
 }
 .image3 {
-  background-image: url(katee-lue-eLYDW_WuE5o-unsplash.jpg);
+  background-image: image-url("katee-lue-eLYDW_WuE5o-unsplash.jpg");
 }
 .image4 {
-  background-image: url(kaylee-garrett-GaprWyIw66o-unsplash-3.jpg);
+  background-image: image-url("kaylee-garrett-GaprWyIw66o-unsplash-3.jpg");
 }
 
 .cp_hr06 {
@@ -84,6 +84,3 @@ margin: 10px 50px 20px;
 	transparent 0%,#283593 50%,transparent 100%);
 }
 
-body {
-  background-image: image-url("hoge.jpg");
-}
