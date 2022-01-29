@@ -32,78 +32,74 @@
    <% end %>
 
    <div class="row mt-5">
-     <% unless @user.id == current_user.id %>
-       <% if @haveRoom == true %>
-         <%= link_to "ダイレクトメッセージ", room_path(@roomId) %>
-       <% else %>
-         <%= form_with model: @room, local: true do |f|%>
-           <%= fields_for @RoomUser do |r| %>
-             <%= r.hidden_field :user_id, value: @user.id %>
-           <% end %>
-           <%= f.submit "チャットを始める" %>
+    <% unless @user.id == current_user.id %>
+     <% if @haveRoom == true %>
+       <%= link_to "ダイレクトメッセージ", room_path(@roomId), {class: "btn btn-secondary"} %>
+     <% else %>
+       <%= form_with model: @room, local: true do |f|%>
+         <%= fields_for @RoomUser do |r| %>
+           <%= r.hidden_field :user_id, value: @user.id %>
          <% end %>
+         <%= f.submit  "チャットを始める" %>
        <% end %>
+     <% end %>
     <% end %>
    </div>
    <div class="row">
     <% if @user.id == current_user.id %>
-      <%= link_to "編集する", edit_user_path(current_user.id)  %>
+      <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-secondary" %>
     <% end %>
    </div>
   </div>
  </div>
 
-
  <div class="border mt-5"></div>
 
-
 <div class="mt-3 font-weight-bold h5">開催しているイベント</div>
-   <div class="itemContrainer d-flex flex-row bd-highlight mt-5">
-    <% @events.each do | event | %>
-    <div class="item mx-5">
-     <%= link_to event_path(event.id) do %>
-      <div><%= attachment_image_tag event, :image, format: 'png', size: "200x200" %></div>
-     <% end %>
-     <div><%= link_to event.title, user_join_user_path(:event_id => event.id) %></div>
-     <div>
-      <%= event.date_from.strftime('%y年 %m月 %d日 %H時 %M分')%>
-     </div>
-     <div><%= event.location %> <%= event.city %> <%= event.park %></div>
-    </div>
-    <% end %>
+ <div class="row bd-highlight mt-5">
+ <% @events.each do | event | %>
+ <div class="col-3 pb-5">
+  <%= link_to event_path(event.id) do %>
+   <div><%= attachment_image_tag event, :image, format: 'png', size: "200x200" %></div>
+  <% end %>
+  <div><%= link_to event.title, user_join_user_path(:event_id => event.id) %></div>
+  <div>
+   <%= event.date_from.strftime('%y年 %m月 %d日 %H時 %M分')%>
   </div>
+  <div><%= event.location %> <%= event.city %> <%= event.park %></div>
+ </div>
+ <% end %>
+</div>
 
-   <div class="border mt-5"></div>
-
+<div class="border mt-5"></div>
 
 <% if @user.id == current_user.id %>
   <div class="row">
-    <div class="col-md-6">
-    <div class="mt-3 font-weight-bold h5">イベント参加予定</div>
-    <div class="itemContrainer d-flex flex-row bd-highlight mt-5">
-     <% @event_joins.each do | join | %>
-      <% if join.event.date_from > Date.today %>
-       <div class="item mx-5">
-        <div><%= link_to join.event.title, event_path(join.event.id) %></div>
-       </div>
-      <% end %>
-     <% end %>
-    </div>
-   </div>
-   
    <div class="col-md-6">
-    <div class="mt-3 font-weight-bold h5">イベント参加履歴</div>
-       <div class="itemContrainer d-flex flex-row bd-highlight mt-5">
-       <% @event_joins.each do | join | %>
-        <% if join.event.date_from < Date.today %>
-         <div class="item mx-5">
-          <div><%= link_to join.event.title, event_path(join.event.id) %></div>
-         </div>
-        <% end %>
+   <div class="mt-3 font-weight-bold h5">イベント参加予定</div>
+   <ul class="itemContrainer col-md-12 row d-flex flex-row bd-highlight mt-3">
+    <% @event_joins.each do | join | %>
+     <% if join.event.date_from > Date.today %>
+      <li class="item col-md-12">
+       <%= link_to join.event.title, event_path(join.event.id) %>
+      </li>
+     <% end %>
+    <% end %>
+   </ul>
+  </div>
+
+  <div class="col-md-6">
+   <div class="mt-3 font-weight-bold h5">イベント参加履歴</div>
+      <div class="itemContrainer col-md-12 row  d-flex flex-row bd-highlight mt-3">
+      <% @event_joins.each do | join | %>
+       <% if join.event.date_from < Date.today %>
+        <div class="item col-md-12">
+         <div><%= link_to join.event.title, event_path(join.event.id) %></div>
+        </div>
        <% end %>
-      </div>
-    </div>
-   
+      <% end %>
+     </div>
+   </div>
   </div>
  <% end %>
 

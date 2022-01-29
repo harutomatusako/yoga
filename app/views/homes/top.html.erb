@@ -1,6 +1,5 @@
-
-
 <div class="display-3 font-weight-bold text-center mt-5">Yoga in the park</div>
+<div class="lead text-muted text-center mt-2">公園でヨガをする。いままでなかったヨガのかたち。</div>
 <div class="container">
  <div class="row mt-5 justify-content-center">
   <div id="box">
@@ -14,9 +13,35 @@
  </div>
 </div>
 
-<div class="text-center mt-5">
- <% if user_signed_in? %>
-  <% else %>
-  <%= link_to "ユーザー登録",new_user_registration_path, class: "btn btn-secondary" %>
-  <% end %>
+<hr class="cp_hr06 mt-5" />
+
+<div class="container text-center mt-5" >
+ <div class="row text-center font-weight-bold " style="display: inline-flex;">
+  <div class="col">
+    <div style="width:200px;height:200px;background-color:silver;" class="rounded-circle">
+     <div class="text-danger h2 mb-4">STEP1</div><br>
+     <div>ユーザー登録をする</div>
+     <div class="mt-3">
+     <% if user_signed_in? %>
+     <% else %>
+     <%= link_to "ユーザー登録",new_user_registration_path, class: "btn btn-secondary" %>
+     <% end %>
+     </div>
+    </div>
+  </div>
+
+  <div class="col ml-5 mr-5">
+    <div style="width:200px;height:200px;background-color:silver;" class="rounded-circle">
+     <div class="text-danger h2 mb-4">STEP2</div><br>
+     <div>イベントを検索する</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div style="width:200px;height:200px;background-color:silver;" class="rounded-circle">
+     <div class="text-danger h2 mb-4">STEP3</div><br>
+     <div>イベントに参加する</div>
+    </div>
+  </div>
+ </div>
 </div>

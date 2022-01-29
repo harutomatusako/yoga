@@ -2,36 +2,37 @@
  <h1 class="text-center mt-5">メッセージ</h1>
 
  <% @RoomUsers.each do |r| %>
- <div class="user-name text-center">
- <strong>
-     <a class="rooms-user-link" href="/users/<%= r.user.id %>">
-       <%= r.user.name %>さん
-     </a>
- </strong>
- </div>
+  <div class="user-name text-center">
+   <strong>
+    <a class="rooms-user-link" href="/users/<%= r.user.id %>">
+      <%= r.user.name %>さん
+    </a>
+   </strong>
+  </div>
  <% end %>
- <hr>
+
  <div class="chats text-center">
    <div class="chat">
-     <% if @messages.present? %>
-       <% @messages.each do |m| %>
-         <div class="chat-box">
-           <div class="chat-text">
-             <%= m.text %>
-             <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
-           </div>
-         </div>
-       <% end %>
-       <%else%>
-         <p>メッセージはまだありません</p>
-     <% end %>
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+       <div class="chat-box">
+        <div class="chat-text">
+          <%= m.text %>
+          <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </div>
+       </div>
+      <% end %>
+      <%else%>
+        <p>メッセージはまだありません</p>
+    <% end %>
    </div>
+   
    <div class="posts">
-     <%= form_with model: @message, local: true do |f| %>
-       <%= f.text_field :text, placeholder: "メッセージを入力してください" %>
-       <%= f.hidden_field :room_id, value: @room.id %>
-       <%= f.submit "送信する" %>
-     <% end %>
+    <%= form_with model: @message, local: true do |f| %>
+      <%= f.text_field :text, placeholder: "メッセージを入力してください" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.submit "送信する" %>
+    <% end %>
    </div>
  </div>
 </div>

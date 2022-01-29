@@ -73,3 +73,17 @@ margin: 10px 50px 20px;
 .image4 {
   background-image: url(kaylee-garrett-GaprWyIw66o-unsplash-3.jpg);
 }
+
+.cp_hr06 {
+	position: relative;
+	height: 1px;
+	border-width: 0;
+	background-image: -webkit-linear-gradient(left,
+	transparent 0%,#283593 50%,transparent 100%);
+	background-image:         linear-gradient(90deg,
+	transparent 0%,#283593 50%,transparent 100%);
+}
+
+body {
+  background-image: image-url("hoge.jpg");
+}

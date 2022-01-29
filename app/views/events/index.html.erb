@@ -1,23 +1,25 @@
-<div class="conteiner">
- <div class="date row mt-5 text-center">
+<div class="container mt-5">
+ <div class="row pb-5">
+  <div class="col text-center">
   <% if user_signed_in? %>
    <%= form_with url: search_events_path, method: :get do |form| %>
     <%= text_field_tag 'content' %>
     <%= submit_tag '検索' %>
    <% end %>
   <% end %>
+  </div>
  </div>
 </div>
 
-
-<div class="itemContrainer d-flex flex-row bd-highlight mt-5">
+<div class="container">
+ <div class="row">
  <% @events.each do |event| %>
-  <div class="item mx-5">
+  <div class="col-4 col-mt-4 col-lg-4 col-sm-4 pb-5">
    <div>
     <%= link_to event_path(event.id) do %>
      <%= attachment_image_tag event, :image, format: 'png', size: "300x300" %>
     <% end %>
-    </div>
+   </div>
    <div><%= event.title %></div>
    <div>
     <%= event.date_from.strftime('%y年 %m月 %d日 %H時 %M分')%>
@@ -25,6 +27,7 @@
    <div><%= event.location %> <%= event.city %> <%= event.park %></div>
   </div>
  <% end %>
+ </div>
 </div>
 
 

@@ -1,3 +1,21 @@
-<% @users.each do | user | %>
- <%= user.name %>
-<% end %>
+<div class="conteiner text-center font-weight-bold  mt-5">
+  <div class="row">
+    <div class="col h3">
+      イベント参加者一覧
+    </div>
+  </div>
+  <div class="row mt-5 ml-5">
+    <% @users.each do | user | %>
+    <dv class="col-3">
+      <dl>
+       <dt><%= link_to user.name, user_path(user.id) %></dt>
+       <dd><img src=<%= user.image %> class = "icon_image"></dd>
+      </dl>
+    </dv>
+    <% end %>
+  </div>
+</div>
+
+
+
+

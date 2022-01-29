@@ -1,4 +1,3 @@
-
 <div class="container">
  <div class="card user_form">
   <div class="card-body font-weight-bold  user">
@@ -9,24 +8,28 @@
       名前<br />
       <%= f.text_field :name, autofocus: true %>
      </div>
+     
      <div class="field">
       メールアドレス<br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
      </div>
+     
      <div class="field">
       パスワード<br />
       <%= f.password_field :password, autocomplete: "new-password" %>
      </div>
+     
 　　　<% if devise_mapping.rememberable? %>
       　<div class="field">
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me %>
       　</div>
   　　<% end %>
+  　　
      <div class="actions mt-5 ">
       <p><%= f.submit "ログインする", class: "btn btn-primary " %></p>
      </div>
-     <% end %>
+    <% end %>
   </div>
  </div>
 </div>
