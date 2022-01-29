@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DeviseCreateUsers < ActiveRecord::Migration[5.0]
+class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
       ## Database authenticatable
@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :name
       t.text :detail
       t.text :image
-      
+
       t.timestamps null: false
     end
 
