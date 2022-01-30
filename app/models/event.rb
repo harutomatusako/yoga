@@ -13,7 +13,7 @@ class Event < ApplicationRecord
      沖縄県:47
    }
    belongs_to :user
-   has_many :event_joins
+   has_many :event_joins, foreign_key: :event_id, dependent: :destroy
   def joined(user)
     EventJoin.where(event_id: self.id, user_id: user.id, status: nil).exists?
   end
