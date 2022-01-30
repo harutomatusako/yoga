@@ -45,10 +45,10 @@ class EventsController < ApplicationController
     content = params[:content]
     @event = Event.locations.find {|key, value| key.match(/#{content}/)}
     if @event.blank?
-     @events = Event.all
+     @events = Event.where('date_from >= ?', Date.today)
     else
      location_enum = @event[1]
-    @events = Event.where(location: location_enum)
+    @events = Event.where(location: location_enum).where('date_from >= ?', Date.today)
     end
     render :index
   end
