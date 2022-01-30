@@ -9,7 +9,7 @@
     <dv class="col-3">
       <dl>
        <dt><%= link_to user.name, user_path(user.id) %></dt>
-       <dd><img src=<%= user.image %> class = "icon_image"></dd>
+       <dd><%= attachment_image_tag user, :image, format: 'png', size: "500x400", class: "icon_image"%></dd>
       </dl>
     </dv>
     <% end %>
