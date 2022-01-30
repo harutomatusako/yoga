@@ -42,7 +42,8 @@
 近くに住んでいるヨガ好きユーザーとの交流の場にもなります。
 
 ## 設計書
-<...>
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1c_spsFqEHUJ_Dir_wuEho4tgytaI4qMvsXwvjpsa9so/edit?usp=sharing)
+- [ER図](https://drive.google.com/file/d/13Ni0n6PooyZQtBtTFk5xTpmuUG3P392q/view?usp=sharing)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1AgeK6UBTiUPLXSuRqd5HpS7_of1Wryq0eeNn_7kO2DU/edit?usp=sharing
